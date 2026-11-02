@@ -45,9 +45,10 @@ class Header extends Component {
             <a class="flex flex-row items-center" href="/">
               <img
                 alt="${this.state.translate('title')}"
+                class="hidden"
                 src="${assetMap.icon}"
               />
-              <svg viewBox="66 0 340 64" class="w-48 md:w-64">
+              <svg viewBox="0 0 3000 750" class="w-48 md:w-64">
                 <use xlink:href="${assetMap.wordmark}" />
               </svg>
             </a>
