@@ -299,8 +299,6 @@ select {
 @screen dark {
   body {
     @apply text-grey-10;
-
-    background-image: unset;
   }
 
   .btn {
