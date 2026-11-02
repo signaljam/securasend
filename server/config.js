@@ -251,17 +251,17 @@ const conf = convict({
   },
   footer_source_url: {
     format: String,
-    default: 'https://github.com/timvisee/send',
+    default: 'https://github.com/signaljam/securasend',
     env: 'SEND_FOOTER_SOURCE_URL'
   },
   custom_footer_text: {
     format: String,
-    default: '',
+    default: 'Brought to you by Signal Jam.',
     env: 'CUSTOM_FOOTER_TEXT'
   },
   custom_footer_url: {
     format: String,
-    default: '',
+    default: 'https://signaljam.me',
     env: 'CUSTOM_FOOTER_URL'
   },
   main_notice_html: {
