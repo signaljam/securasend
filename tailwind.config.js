@@ -3,19 +3,58 @@ const colors = {
   primary: 'var(--color-primary)',
   primary_accent: 'var(--color-primary-accent)',
 
-  black: '#000000',
-  'grey-90': '#0c0c0d',
-  'grey-80': '#2a2a2e',
-  'grey-70': '#38383d',
-  'grey-60': '#4a4a4f',
+  // ================================================================
+  // SecuraSend palette — SEMANTIC ROLES, NOT LITERAL COLORS.
+  //
+  // These keys are Send's legacy utility names (bg-black, grey-90,
+  // etc.). Their VALUES are SecuraSend brand colors. Do not read
+  // the names literally. Audited 2026-11-02: black, grey-90 and
+  // grey-10 are surface-only in app/; grey-80 is surface AND
+  // light-mode secondary text (tinting accepted, see notes below).
+  // ================================================================
+
+  // Dark-mode recessed surface (drop zone). Was #000000.
+  black: '#131826',
+
+  // Dark-mode raised surface (cards, chips, footers). Was #0c0c0d.
+  'grey-90': '#171c28',
+
+  // Dark-mode inputs/chips AND light-mode secondary text.
+  // Navy tint on text is intentional (brand consistency).
+  // Was #2a2a2e.
+  'grey-80': '#212739',
+
+  // Borders: chip outlines, hr dividers (dark). Was #38383d.
+  'grey-70': '#2a3247',
+
+  // Minor borders, dashed drop-zone edge (dark). Was #4a4a4f.
+  'grey-60': '#3c4661',
+
+  // Secondary text (light mode). Unchanged.
   'grey-50': '#737373',
+
+  // Divider / neutral mid text. Unchanged.
   grey: '#b1b1b3',
+
+  // Secondary text (dark mode). Unchanged.
   'grey-40': '#b1b1b3',
+
+  // Light borders. Unchanged.
   'grey-30': '#d7d7db',
-  'grey-banner': '#f0f0f4',
-  'grey-transparent': 'hsla(250, 13%, 9%, .2)',
-  'grey-20': '#ededf0',
-  'grey-10': '#f9f9fa',
+
+  // Top banner surface (light). Was #f0f0f4.
+  'grey-banner': '#eef1f6',
+
+  // Dashed border on the empty drop zone (light). Was neutral haze.
+  'grey-transparent': 'hsla(230, 25%, 12%, .2)',
+
+  // Light borders/highlights. Was #ededf0.
+  'grey-20': '#eceef4',
+
+  // Light-mode recessed surface (file list). Was #f9f9fa.
+  'grey-10': '#f4f6fa',
+
+  // Card surface (light). Stays pure white.
   white: '#ffffff',
 
   cloud: 'rgba(255, 255, 255, 0.8)',
