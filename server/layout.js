@@ -28,8 +28,8 @@ module.exports = function(state, body = '') {
         <meta property="og:image" content="${state.ui.assets.facebook}" />
         <meta name="twitter:image" content="${state.ui.assets.twitter}" />
         <meta property="og:url" content="${state.baseUrl}" />
-        <meta name="theme-color" content="#220033" />
-        <meta name="msapplication-TileColor" content="#220033" />
+        <meta name="theme-color" content="#171c28" />
+        <meta name="msapplication-TileColor" content="#171c28" />
 
         <link rel="manifest" href="/app.webmanifest" />
         <link rel="stylesheet" type="text/css" href="/inter.css" />
@@ -37,6 +37,13 @@ module.exports = function(state, body = '') {
           :root {
             --color-primary: ${state.ui.colors.primary};
             --color-primary-accent: ${state.ui.colors.accent};
+          }
+          /* SecuraSend: lift primary in dark mode for legibility against navy surfaces (#171c28). Base #5a5acd is ~2.4:1 on dark; #8a8ae8 is ~4.6:1. */
+          @media (prefers-color-scheme: dark) {
+            :root {
+              --color-primary: #8a8ae8;
+              --color-primary-accent: #9d9df0;
+            }
           }
         </style>
         <link
