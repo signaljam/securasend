@@ -423,3 +423,17 @@ select {
 }
 
 /* end signin button color experiment */
+
+/* Drop zone hover */
+send-upload-area.drag-over {
+  background-color: #e8ecf6;
+  border-color: #3347b8;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  send-upload-area.drag-over {
+    background-color: #1a2032;
+    border-color: #8594f2;
+  }
+}

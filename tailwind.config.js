@@ -160,7 +160,7 @@ module.exports = {
       none: '0',
       sm: '.125rem',
       default: '.25rem',
-      lg: '.5rem',
+      lg: '.75rem',
       xl: '1rem',
       full: '9999px'
     },

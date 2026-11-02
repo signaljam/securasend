@@ -46,13 +46,13 @@ passwordSetError = This password could not be set
 
 ## Send version 2 strings
 
--send-brand = Send
--send-short-brand = Send
+-send-brand = Secura
+-send-short-brand = Secura
 -firefox = Firefox
 -mozilla = Mozilla
 
-introTitle = Simple, private file sharing
-introDescription = { -send-brand } lets you share files with end-to-end encryption and a link that automatically expires. So you can keep what you share private and make sure your stuff doesn’t stay online forever.
+introTitle = Peace of mind file sharing
+introDescription = Share anything in a link. { -send-brand } uses end-to-end encryption, so nobody except you (and your recipient) can see what you share— not even us. All links automatically self-destruct when you want.
 notifyUploadEncryptDone = Your file is encrypted and ready to send
 # downloadCount is from the downloadCount string and timespan is a timespanMinutes string. ex. 'Expires after 2 downloads or 25 minutes'
 archiveExpiryInfo = Expires after { $downloadCount } or { $timespan }

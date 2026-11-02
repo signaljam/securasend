@@ -498,13 +498,35 @@ module.exports.empty = function(state, emit) {
 
   return html`
     <send-upload-area
-      class="flex flex-col items-center justify-center border-2 border-dashed border-grey-transparent rounded-default px-6 py-16 h-full w-full dark:border-grey-60"
+      class="flex flex-col items-center justify-center border-2 border-dashed border-grey-transparent rounded-xl px-6 py-16 h-full w-full dark:border-grey-60"
       onclick="${e => {
         if (e.target.tagName !== 'LABEL') {
           document.getElementById('file-upload').click();
         }
       }}"
+      onclick="${e => {
+        if (e.target.tagName !== 'LABEL') {
+          document.getElementById('file-upload').click();
+        }
+      }}"
+      ondragenter="${e => {
+        e.preventDefault();
+        const el = e.currentTarget;
+        el.dataset.dragDepth = (parseInt(el.dataset.dragDepth) || 0) + 1;
+        el.classList.add('drag-over');
+      }}"
+      ondragleave="${e => {
+        const el = e.currentTarget;
+        el.dataset.dragDepth = parseInt(el.dataset.dragDepth || '1') - 1;
+        if (el.dataset.dragDepth <= 0) {
+          delete el.dataset.dragDepth;
+          el.classList.remove('drag-over');
+        }
+      }}"
+      ondragover="${e => e.preventDefault()}"
+      ondrop="${e => e.preventDefault()}"
     >
+      >
       <svg class="w-10 h-10 link-primary">
         <use xlink:href="/${assets.get('addfiles.svg')}#plus" />
       </svg>
