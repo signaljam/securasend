@@ -59,6 +59,8 @@ body {
   @apply py-4;
   @apply px-6;
   @apply font-semibold;
+
+  transition: background-color 500ms ease;
 }
 
 .btn:hover {
@@ -436,6 +438,6 @@ send-upload-area.drag-over {
 @media (prefers-color-scheme: dark) {
   send-upload-area.drag-over {
     background-color: #1a2032;
-    border-color: #8594f2;
+    border-color: #6d8df0;
   }
 }

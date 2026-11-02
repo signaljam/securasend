@@ -4,8 +4,8 @@ module.exports = async function(req, res) {
   const appState = await state(req);
 
   const manifest = {
-    name: 'Send',
-    short_name: 'Send',
+    name: 'Secura',
+    short_name: 'Secura',
     lang: req.language,
     icons: [
       {
@@ -22,8 +22,8 @@ module.exports = async function(req, res) {
     start_url: '/',
     display: 'standalone',
     orientation: 'portrait',
-    theme_color: '#220033',
-    background_color: 'white'
+    theme_color: '#171c28',
+    background_color: '0d1117'
   };
   res.set('Content-Type', 'application/manifest+json');
   res.json(manifest);

@@ -48,8 +48,8 @@ module.exports = function(state, body = '') {
           /* SecuraSend: lift primary in dark mode for legibility against navy surfaces (#171c28). Base #5a5acd is ~2.4:1 on dark; #8a8ae8 is ~4.6:1. */
           @media (prefers-color-scheme: dark) {
             :root {
-              --color-primary: #8594f2;
-              --color-primary-accent: #9d9df0;
+              --color-primary: #6d8df0;
+              --color-primary-accent: #7fa3f5;
             }
           }
         </style>
