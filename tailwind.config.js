@@ -52,10 +52,9 @@ const colors = {
   'grey-20': '#eceef4',
 
   // Light-mode recessed surface (file list). Was #f9f9fa.
-  'grey-10': '#f4f6fa',
+  'grey-10': '#f6f8fb',
 
-  // Card surface (light). Stays pure white.
-  white: '#ffffff',
+  white: '#f8fafc',
 
   cloud: 'rgba(255, 255, 255, 0.8)',
   violet: 'hsl(258, 57%, 35%)'
