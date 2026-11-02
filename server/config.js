@@ -291,12 +291,14 @@ const conf = convict({
   },
   ui_color_primary: {
     format: String,
-    default: '#0a84ff',
+    // SecuraSend primary: violet. Was Firefox blue #0a84ff
+    default: '#5a5acd',
     env: 'UI_COLOR_PRIMARY'
   },
   ui_color_accent: {
     format: String,
-    default: '#003eaa',
+    // SecuraSend hover accent: lifted violet. Was #003eaa
+    default: '#6f6fe0',
     env: 'UI_COLOR_ACCENT'
   },
   custom_locale: {
