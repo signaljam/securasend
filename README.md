@@ -1,172 +1,73 @@
-# [![Send](./assets/icon-64x64.png)](https://gitlab.com/timvisee/send/) Send
+# Secura
 
-[![Build status on GitLab CI][gitlab-ci-master-badge]][gitlab-ci-link]
-[![Latest release][release-badge]][release-link]
-[![Docker image][docker-image-badge]][docker-image-link]
-[![Project license][repo-license-badge]](LICENSE)
+Share anything in a link. Secrua uses end-to-end encryption, so nobody but you (and your recipient) can see what you share— not even us. All links automatically self-destruct when you want.
 
-[docker-image-badge]: https://img.shields.io/badge/docker-latest-blue.svg
-[docker-image-link]: https://gitlab.com/timvisee/send/container_registry/eyJuYW1lIjoidGltdmlzZWUvc2VuZCIsInRhZ3NfcGF0aCI6Ii90aW12aXNlZS9zZW5kL3JlZ2lzdHJ5L3JlcG9zaXRvcnkvMTQxODUwNC90YWdzP2Zvcm1hdD1qc29uIiwiaWQiOjE0MTg1MDQsImNsZWFudXBfcG9saWN5X3N0YXJ0ZWRfYXQiOm51bGx9
-[gitlab-ci-link]: https://gitlab.com/timvisee/send/pipelines
-[gitlab-ci-master-badge]: https://gitlab.com/timvisee/send/badges/master/pipeline.svg
-[release-badge]: https://img.shields.io/github/v/tag/timvisee/send
-[release-link]: https://gitlab.com/timvisee/send/-/tags
-[repo-license-badge]: https://img.shields.io/github/license/timvisee/send.svg
+**Try it:** [securasend.com](https://securasend.com)
 
-A fork of Mozilla's [Firefox Send][mozilla-send].
-Mozilla discontinued Send, this fork is a community effort to keep the project
-up-to-date and alive.
+## About this project
 
-- Forked [at][fork-commit] Mozilla's last publicly hosted version
-- _Mozilla_ & _Firefox_ branding [is][remove-branding-pr] removed so you can legally self-host
-- Kept compatible with [`ffsend`][ffsend] (CLI for Send)
-- Dependencies have been updated
-- Mozilla's [changes][mozilla-patches] since the fork have been selectively [merged][mozilla-patches-pr]
-- Mozilla's experimental report feature, download tokens, trust warnings and FxA changes are not included
+Secura is a fork of [Send](https://github.com/timvisee/send) — originally developed by Mozilla and continued by [Tim Visée](https://github.com/timvisee/send) — maintained as the engine behind the Secura instance. We track upstream closely and regularly merge upstream fixes and improvements.
 
-Find an up-to-date Docker image here: [docs/docker.md](docs/docker.md)
+Differences from upstream include:
 
-The original project by Mozilla can be found [here][mozilla-send].
-The [`mozilla-master`][branch-mozilla-master] branch holds the `master` branch
-as left by Mozilla.
-The [`send-v3`][branch-send-v3] branch holds the commit tree of Mozilla's last
-publicly hosted version, which this fork is based on.
-The [`send-v4`][branch-send-v4] branch holds the commit tree of Mozilla's last
-experimental version which was still a work in progress (featuring file
-reporting, download tokens, trust warnings and FxA changes), this has
-selectively been merged into this fork.
-Please consider to [donate][donate] to allow me to keep working on this.
+- Secura branding: wordmark, favicon, and color palette
+- A hex-rain background theme (light and dark modes)
+- Slight layout adjustments and custom CSS tweaks
+- Hardened defaults tuned for a public instance, behind a [go-away](https://git.gammaspectra.live/git/go-away) challenge proxy
 
-Thanks [Mozilla][mozilla] for building this amazing tool!
+See [LICENSING.md](./LICENSING.md) for what you may reuse: the software is MPL-2.0 and fully forkable; the Secura name and brand assets are not.
 
-[branch-mozilla-master]: https://gitlab.com/timvisee/send/-/tree/mozilla-master
-[branch-send-v3]: https://gitlab.com/timvisee/send/-/tree/send-v3
-[branch-send-v4]: https://gitlab.com/timvisee/send/-/tree/send-v4
-[donate]: https://timvisee.com/donate
-[ffsend]: https://github.com/timvisee/ffsend
-[fork-commit]: https://gitlab.com/timvisee/send/-/commit/3e9be676413a6e1baaf6a354c180e91899d10bec
-[mozilla-patches-pr]: https://gitlab.com/timvisee/send/-/merge_requests/3
-[mozilla-patches]: https://gitlab.com/timvisee/send/-/compare/3e9be676413a6e1baaf6a354c180e91899d10bec...mozilla-master
-[mozilla-send]: https://github.com/mozilla/send
-[mozilla]: https://mozilla.org/
-[remove-branding-pr]: https://gitlab.com/timvisee/send/-/merge_requests/2
+## Features
 
----
+- End-to-end encryption in the browser — the server can't read your files
+- Links that expire by time or download count
+- Optional password protection
+- Dark mode
 
-**Docs:** [FAQ](docs/faq.md), [Encryption](docs/encryption.md), [Build](docs/build.md), [Docker](docs/docker.md), [More](docs/)
+## Self-hosting
 
----
+The quickest way to run Secura (or your own fork of it):
 
-## Table of Contents
+1. Pull the image:
 
-* [What it does](#what-it-does)
-* [Requirements](#requirements)
-* [Development](#development)
-* [Commands](#commands)
-* [Configuration](#configuration)
-* [Localization](#localization)
-* [Contributing](#contributing)
-* [Instances](#instances)
-* [Deployment](#deployment)
-* [Clients](#clients)
-* [License](#license)
+   ```yaml
+   services:
+     send:
+       image: ghcr.io/signaljam/securasend:latest
+       restart: always
+       volumes:
+         - ./uploads:/uploads
+       environment:
+         - NODE_ENV=production
+         - BASE_URL=https://your.domain
+         - PORT=1234
+         - REDIS_HOST=redis
+         - FILE_DIR=/uploads
+   ```
 
----
+2. Bring your own Redis and reverse proxy (nginx, Caddy, or a Docker proxy such as [nginx-proxy](https://github.com/nginx-proxy/nginx-proxy)).
 
-## What it does
+3. `docker compose up -d`
 
-A file sharing experiment which allows you to send encrypted files to other users.
+Configuration is driven by environment variables — expiry times, download limits, and max file size are all tunable. The full set is documented in [`docs/docker.md`](./docs/docker.md).
 
----
-
-## Requirements
-
-- [Node.js 16.x](https://nodejs.org/)
-- [Redis server](https://redis.io/) (optional for development)
-- [AWS S3](https://aws.amazon.com/s3/) or compatible service (optional)
-
----
+If you fork this repository, please rebrand before deploying publicly — see [LICENSING.md](./LICENSING.md).
 
 ## Development
 
-To start an ephemeral development server, run:
-
-```sh
+```bash
 npm install
 npm start
 ```
 
-Then, browse to http://localhost:8080
+Requirements: Node.js and Redis. See the upstream [Send documentation](https://github.com/timvisee/send/tree/master/docs) for details.
 
----
+## Credits
 
-## Commands
-
-| Command          | Description |
-|------------------|-------------|
-| `npm run format` | Formats the frontend and server code using **prettier**.
-| `npm run lint`   | Lints the CSS and JavaScript code.
-| `npm test`       | Runs the suite of mocha tests.
-| `npm start`      | Runs the server in development configuration.
-| `npm run build`  | Builds the production assets.
-| `npm run prod`   | Runs the server in production configuration.
-
----
-
-## Configuration
-
-The server is configured with environment variables. See [server/config.js](server/config.js) for all options and [docs/docker.md](docs/docker.md) for examples.
-
----
-
-## Localization
-
-See: [docs/localization.md](docs/localization.md)
-
----
-
-## Contributing
-
-Pull requests are always welcome! Feel free to check out the list of "good first issues" (to be implemented).
-
----
-
-## Instances
-
-Find a list of public instances here: https://github.com/timvisee/send-instances/
-
----
-
-## Deployment
-
-See: [docs/deployment.md](docs/deployment.md)
-
-Docker quickstart: [docs/docker.md](docs/docker.md)
-
-AWS example using Ubuntu Server `20.04`: [docs/AWS.md](docs/AWS.md)
-
----
-
-## Clients
-
-- Web: _this repository_
-- Command-line: [`ffsend`](https://github.com/timvisee/ffsend)
-- Android: _see [Android](#android) section_
-- Thunderbird: [FileLink provider for Send](https://addons.thunderbird.net/thunderbird/addon/filelink-provider-for-send/)
-
-#### Android
-
-The android implementation is contained in the `android` directory,
-and can be viewed locally for easy testing and editing by running `ANDROID=1 npm
-start` and then visiting <http://localhost:8080>. CSS and image files are
-located in the `android/app/src/main/assets` directory.
-
----
+- [Send](https://github.com/timvisee/send) by Tim Visée and contributors
+- The original [Mozilla Send](https://github.com/mozilla/send) team
+- Secura modifications by Signal Jam
 
 ## License
 
-[Mozilla Public License Version 2.0](LICENSE)
-
-[qrcode.js](https://github.com/kazuhikoarase/qrcode-generator) licensed under MIT
-
----
+The software in this repository is licensed under the [MPL-2.0](./LICENSE). The Secura name, wordmark, logos, and favicons are held by Signal Jam — see [LICENSING.md](./LICENSING.md).
