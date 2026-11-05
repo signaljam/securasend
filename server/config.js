@@ -170,7 +170,7 @@ const conf = convict({
   },
   custom_title: {
     format: String,
-    default: 'Send',
+    default: 'Secura',
     env: 'CUSTOM_TITLE'
   },
   custom_description: {
